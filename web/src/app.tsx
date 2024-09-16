@@ -12,9 +12,10 @@ export function App() {
     staleTime: 1000 * 600, // 60 seconds
   })
 
+
   return (
     <Dialog>
-      {data?.total && data.total > 0 ? <Summary data={data} /> : <EmptyGoals />}
+      {data?.total && data.total > 0 ? <Summary summary={data} /> : <EmptyGoals />}
 
       <CreateGoal />
     </Dialog>
