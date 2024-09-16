@@ -6,14 +6,30 @@ import { Separator } from './ui/separator'
 import { ProgressBar } from './progress-bar'
 import { GoalButton } from './goal-button'
 import { GoalContainer } from './GoalContainer'
+import type { SummaryResponse } from '../http/get-summary'
+import dayjs from 'dayjs'
+import ptBR from 'dayjs/locale/pt-br'
 
-export function Summary() {
+dayjs.locale(ptBR)
+
+interface SummaryProps {
+  data: SummaryResponse
+}
+
+export function Summary({ data }: SummaryProps) {
+  const firstDayOfWeek = dayjs().startOf('week').format('D MMM')
+  const LastDayOfWeek = dayjs().endOf('week').format('D MMM')
+
+  const completedPercentage = Math.round((data?.completed * 100) / data?.total)
+
   return (
     <div className="py-10 max-w-[480px] px-5 mx-auto flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <InOrbitIcon />
-          <span className="text-lg font-semibold">5 a 10 de Agosto</span>
+          <span className="text-lg font-semibold capitalize">
+            {firstDayOfWeek} - {LastDayOfWeek}
+          </span>
         </div>
         <DialogTrigger asChild>
           <Button size="sm">
@@ -23,7 +39,11 @@ export function Summary() {
         </DialogTrigger>
       </div>
 
-      <ProgressBar />
+      <ProgressBar
+        completed={data?.completed}
+        total={data?.total}
+        completedPercentage={completedPercentage}
+      />
       <Separator />
       <GoalButton />
 
