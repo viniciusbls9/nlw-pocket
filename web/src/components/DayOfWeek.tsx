@@ -1,7 +1,13 @@
-export function DayOffWeek() {
+interface DayOffWeekProps {
+  date: string
+  weekDay: string
+}
+
+export function DayOffWeek({ weekDay, date }: DayOffWeekProps) {
   return (
     <h3 className="font-medium">
-      Domingo <span className="text-zinc-400 text-xs">(10 de Agosto)</span>
+      <span className="capitalize">{weekDay}</span>
+      <span className="text-zinc-400 text-xs">({date})</span>
     </h3>
   )
 }
