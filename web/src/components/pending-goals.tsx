@@ -1,7 +1,7 @@
 import { Plus } from 'lucide-react'
 import { OutlineButton } from './ui/outline-button'
 
-export function GoalButton() {
+export function PendingGoals() {
   return (
     <div className="flex flex-wrap gap-3">
       <OutlineButton>

@@ -1,6 +1,6 @@
 import dayjs from 'dayjs'
-import { DayOffWeek } from './DayOfWeek'
-import { GoalList } from './GoalList'
+import { DayOffWeek } from './day-of-week'
+import { GoalList } from './goal-list'
 import { SummaryResponse } from '../http/get-summary'
 
 interface GoalContainerProps {

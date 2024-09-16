@@ -4,8 +4,8 @@ import { DialogTrigger } from './ui/dialog'
 import { InOrbitIcon } from './in-orbit-icon'
 import { Separator } from './ui/separator'
 import { ProgressBar } from './progress-bar'
-import { GoalButton } from './goal-button'
-import { GoalContainer } from './GoalContainer'
+import { PendingGoals } from './pending-goals'
+import { GoalContainer } from './goal-container'
 import type { SummaryResponse } from '../http/get-summary'
 import dayjs from 'dayjs'
 import ptBR from 'dayjs/locale/pt-br'
@@ -48,7 +48,7 @@ export function Summary({ summary }: SummaryProps) {
         completedPercentage={completedPercentage}
       />
       <Separator />
-      <GoalButton />
+      <PendingGoals />
 
       <GoalContainer goalsPerDay={summary?.goalsPerDay} />
     </div>
