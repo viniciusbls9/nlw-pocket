@@ -13,14 +13,17 @@ import ptBR from 'dayjs/locale/pt-br'
 dayjs.locale(ptBR)
 
 interface SummaryProps {
-  data: SummaryResponse
+  summary: SummaryResponse
 }
 
-export function Summary({ data }: SummaryProps) {
+export function Summary({ summary }: SummaryProps) {
   const firstDayOfWeek = dayjs().startOf('week').format('D MMM')
   const LastDayOfWeek = dayjs().endOf('week').format('D MMM')
 
-  const completedPercentage = Math.round((data?.completed * 100) / data?.total)
+  const completedPercentage = Math.round(
+    (summary?.completed * 100) / summary?.total
+  )
+
 
   return (
     <div className="py-10 max-w-[480px] px-5 mx-auto flex flex-col gap-6">
@@ -40,14 +43,14 @@ export function Summary({ data }: SummaryProps) {
       </div>
 
       <ProgressBar
-        completed={data?.completed}
-        total={data?.total}
+        completed={summary?.completed}
+        total={summary?.total}
         completedPercentage={completedPercentage}
       />
       <Separator />
       <GoalButton />
 
-      <GoalContainer />
+      <GoalContainer goalsPerDay={summary?.goalsPerDay} />
     </div>
   )
 }
